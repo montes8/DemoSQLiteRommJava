@@ -39,7 +39,7 @@ public class SplashActivity extends AppCompatActivity {
              try{
 
                  sleep(SPLASH_DISPLAY_LENGTH);
-                 Intent mainIntent = new Intent(SplashActivity.this,HomeActivity.class);
+                 Intent mainIntent = new Intent(SplashActivity.this,LoginActivity.class);
                  startActivity(mainIntent);
                  finish();
                  } catch (Exception e){
@@ -47,8 +47,7 @@ public class SplashActivity extends AppCompatActivity {
              }
          }
 
-
-     };
+         };
      splash.start();
 
     }
