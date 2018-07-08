@@ -3,6 +3,8 @@ package com.example.montes8.demosqliteroomjava.model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
+
+
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 @Entity(foreignKeys = @ForeignKey(entity = Usuario.class,parentColumns = "idUsu",childColumns = "userId",onDelete = CASCADE))
@@ -10,6 +12,7 @@ public class Pedido {
 
     @PrimaryKey(autoGenerate = true)
     private Long idPedido;
+
     private Long userId;
     private String fecha;
     private Double montoTotal;

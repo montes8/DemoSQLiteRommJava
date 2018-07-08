@@ -3,11 +3,14 @@ package com.example.montes8.demosqliteroomjava.model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import io.reactivex.annotations.NonNull;
+
 @Entity
 public class Usuario {
 
     @PrimaryKey(autoGenerate = true)
     private Long idUsu;
+
     private String nombre;
     private String nombreUsuario;
     private String contrasenia;

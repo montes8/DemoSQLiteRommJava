@@ -4,17 +4,20 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity(primaryKeys = {"pedidoid","platoId"},foreignKeys = {@ForeignKey(entity = Pedido.class,parentColumns = "idPedido",childColumns = "pedidoid"),
+import io.reactivex.annotations.NonNull;
+
+@Entity(foreignKeys = {@ForeignKey(entity = Pedido.class,parentColumns = "idPedido",childColumns = "pedidoid"),
                                                              @ForeignKey(entity = Plato.class,parentColumns = "idPlato",childColumns = "platoId")
                                                            })
 public class DetallePedido {
 
     @PrimaryKey(autoGenerate = true)
-    private Long idDetalle;
-    private Long pedidoid;
-    private Long platoId;
-    private Integer cantidad;
-    private Double subTotal;
+    public Long idDetalle;
+
+    public Long pedidoid;
+    public Long platoId;
+    public Integer cantidad;
+    public Double subTotal;
 
     public DetallePedido(Long idDetalle, Long pedidoid, Long platoId, Integer cantidad, Double subTotal) {
         this.idDetalle = idDetalle;

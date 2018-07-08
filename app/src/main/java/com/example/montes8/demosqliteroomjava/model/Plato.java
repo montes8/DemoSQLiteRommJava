@@ -3,11 +3,14 @@ package com.example.montes8.demosqliteroomjava.model;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import io.reactivex.annotations.NonNull;
+
 @Entity
 public class Plato {
 
     @PrimaryKey(autoGenerate = true)
     private Long idPlato;
+
     private String nombrePlato;
     private String imagen;
     private Double precioPlto;

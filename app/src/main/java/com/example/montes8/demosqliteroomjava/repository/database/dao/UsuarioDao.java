@@ -1,6 +1,7 @@
 package com.example.montes8.demosqliteroomjava.repository.database.dao;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import com.example.montes8.demosqliteroomjava.model.Usuario;
 import java.util.List;
@@ -16,5 +17,8 @@ public interface UsuarioDao {
 
     @Query("select * from Usuario where idUsu = :id")
     Usuario verDetalleUsuarioLogeado(Long id);
+
+    @Insert
+    Long insertarUsuario(Usuario usuario);
 
 }

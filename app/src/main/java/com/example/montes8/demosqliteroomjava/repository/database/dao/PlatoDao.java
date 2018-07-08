@@ -16,5 +16,5 @@ public interface PlatoDao {
     List<Plato> listarPlatos();
 
     @Insert
-    ArrayList<Long> insertarListaPlatos(ArrayList<Plato> plato);
+    List<Long> insertarListaPlatos(ArrayList<Plato> plato);
 }

@@ -6,6 +6,7 @@ import android.arch.persistence.room.Query;
 
 import com.example.montes8.demosqliteroomjava.model.DetallePedido;
 import com.example.montes8.demosqliteroomjava.model.Pedido;
+import com.example.montes8.demosqliteroomjava.model.Plato;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface DetallePedidoDao {
     Pedido detalleDePedido(Long pedidoId);
 
     @Query("select * from DetallePedido inner join Plato on DetallePedido.platoId=Plato.idPlato where DetallePedido.platoId= :platoId")
-    Pedido detalleDePlato(Long platoId);
+    Plato detalleDePlato(Long platoId);
 
     @Insert
     Long insertarDetallepedido(DetallePedido detalle);

@@ -12,7 +12,7 @@ public class DemoApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-        dataBase = Room.databaseBuilder(this,DemoDataBase.class,"demo_database.db")
+        dataBase = Room.databaseBuilder(this,DemoDataBase.class,"demo_database.db").allowMainThreadQueries()
                 .build();
     }
 }
