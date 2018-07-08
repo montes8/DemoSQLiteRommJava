@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">DemoSQLiteRoomJava</string>
+    <string name="plato">plato</string>
+    <string name="precio">precio</string>
+    <string name="cantidad">cantidad</string>
+    <string name="subtotal">subtotal</string>
+    <string name="pedido">pedido</string>
+    <string name="total">total</string>
+    <string name="fecha">fecha</string>
 </resources>
