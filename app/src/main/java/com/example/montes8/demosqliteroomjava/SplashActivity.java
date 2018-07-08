@@ -1,5 +1,8 @@
 package com.example.montes8.demosqliteroomjava;
 
+
+import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.Animation;
@@ -10,6 +13,10 @@ public class SplashActivity extends AppCompatActivity {
 
     LinearLayout once,doce;
     Animation arriba,abajo;
+
+    private final int SPLASH_DISPLAY_LENGTH = 3 * 1000;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +32,24 @@ public class SplashActivity extends AppCompatActivity {
         once.setAnimation(arriba);
         doce.setAnimation(abajo);
 
+     Thread splash = new Thread(){
+
+         public void run (){
+
+             try{
+
+                 sleep(SPLASH_DISPLAY_LENGTH);
+                 Intent mainIntent = new Intent(SplashActivity.this,HomeActivity.class);
+                 startActivity(mainIntent);
+                 finish();
+                 } catch (Exception e){
+                 e.printStackTrace();
+             }
+         }
+
+
+     };
+     splash.start();
 
     }
 }
