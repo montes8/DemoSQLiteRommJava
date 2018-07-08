@@ -1,4 +1,4 @@
-package com.example.montes8.demosqliteroomjava;
+package com.example.montes8.demosqliteroomjava.view;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -11,6 +11,8 @@ import android.text.style.ClickableSpan;
 import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.montes8.demosqliteroomjava.R;
 
 
 public class LoginActivity extends AppCompatActivity {
