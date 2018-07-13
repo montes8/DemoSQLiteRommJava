@@ -56,7 +56,7 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
 
     @Override
     public int getItemCount() {
-        return listaPlatos.size();
+            return listaPlatos.size();
     }
 
     public static class PlatoViewholder extends RecyclerView.ViewHolder{
@@ -70,7 +70,7 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
 
             context = itemView.getContext();
             imagen = itemView.findViewById(R.id.image_view_plato);
-            nombre = itemView.findViewById(R.id.text_nombre_plato);
+            nombre = itemView.findViewById(R.id.text_nombre_pletoitem);
             precio = itemView.findViewById(R.id.text_precio);
             agregarplato = itemView.findViewById(R.id.image_add);
             detallePlato = itemView.findViewById(R.id.image_detalles);
