@@ -1,5 +1,6 @@
 package com.example.montes8.demosqliteroomjava.view;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -66,11 +67,14 @@ public class RegistrarActivity extends AppCompatActivity {
 
                 Usuario usuario = new Usuario(nombre.getText().toString(), nomdreusuario.getText().toString(), contrasenia.getText().toString(), pais.getText().toString());
                 DemoApplication.dataBase.usuarioDao().insertarUsuario(usuario);
+                Intent intent = new Intent(RegistrarActivity.this,HomeActivity.class);
+                startActivity(intent);
+                
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(RegistrarActivity.this,"producto registrado",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegistrarActivity.this,"Usuario Registrado",Toast.LENGTH_SHORT).show();
                     }
                 });
 
