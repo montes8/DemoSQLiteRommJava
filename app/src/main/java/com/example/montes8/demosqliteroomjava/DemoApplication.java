@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.persistence.room.Room;
 
 import com.example.montes8.demosqliteroomjava.repository.database.DemoDataBase;
+import com.example.montes8.demosqliteroomjava.repository.database.PoblarBaseDatosCallBack;
 
 public class DemoApplication extends Application{
 
@@ -13,6 +14,7 @@ public class DemoApplication extends Application{
     public void onCreate() {
         super.onCreate();
         dataBase = Room.databaseBuilder(this,DemoDataBase.class,"demo_database.db")
+                .addCallback(new PoblarBaseDatosCallBack())
                 .build();
     }
 }

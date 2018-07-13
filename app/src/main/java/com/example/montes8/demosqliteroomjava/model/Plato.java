@@ -18,8 +18,7 @@ public class Plato {
     private Integer descuento;
     private String descripcion;
 
-    public Plato(Long idPlato, String nombrePlato, String imagen, Double precioPlto, String calorias, Integer descuento, String descripcion) {
-        this.idPlato = idPlato;
+    public Plato(String nombrePlato, String imagen, Double precioPlto, String calorias, Integer descuento, String descripcion) {
         this.nombrePlato = nombrePlato;
         this.imagen = imagen;
         this.precioPlto = precioPlto;
