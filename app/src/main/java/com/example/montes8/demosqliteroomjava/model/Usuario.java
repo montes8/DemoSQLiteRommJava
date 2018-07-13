@@ -17,8 +17,8 @@ public class Usuario {
     private String pais;
 
 
-    public Usuario(Long idUsu, String nombre, String nombreUsuario, String contrasenia, String pais) {
-        this.idUsu = idUsu;
+    public Usuario( String nombre, String nombreUsuario, String contrasenia, String pais) {
+
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
