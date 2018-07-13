@@ -25,17 +25,30 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText nombre,contasenia;
     Button logearle;
+    TextView registarteTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        TextView registarteTextView = (TextView) findViewById(R.id.tvRegistrate);
+        registarteTextView = (TextView) findViewById(R.id.tvRegistrate);
         nombre = findViewById(R.id.edit_nombre_login);
         contasenia = findViewById(R.id.edit_password_login);
         logearle = findViewById(R.id.button_login);
 
+       ajusteTextRegister();
 
+       logearle.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               LoginAsyntask login = new LoginAsyntask();
+               login.execute();
+           }
+       });
+
+    }
+
+    public void ajusteTextRegister(){
         String string =getString(R.string.registrate);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
         StyleSpan boldSpan = new StyleSpan(Typeface.BOLD);
@@ -51,14 +64,13 @@ public class LoginActivity extends AppCompatActivity {
         registarteTextView.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
-
-    private class ligonAsyntask extends AsyncTask<Void,Integer,Usuario>{
+    private class LoginAsyntask extends AsyncTask<Void,Integer,Usuario>{
 
         @Override
         protected Usuario doInBackground(Void... voids) {
 
             Usuario usuario = DemoApplication.dataBase.usuarioDao().userLOgin(nombre.getText().toString(),contasenia.getText().toString());
-            return null;
+            return usuario;
         }
 
         @Override
