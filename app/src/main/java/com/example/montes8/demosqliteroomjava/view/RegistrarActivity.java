@@ -1,5 +1,6 @@
 package com.example.montes8.demosqliteroomjava.view;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,8 @@ public class RegistrarActivity extends AppCompatActivity {
 
     EditText nombre,nomdreusuario,contrasenia,pais;
     Button registar;
+    Handler handler = new Handler();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +30,22 @@ public class RegistrarActivity extends AppCompatActivity {
         contrasenia = findViewById(R.id.edit_password);
         pais = findViewById(R.id.edit_pais);
         registar = findViewById(R.id.button_click_register);
+        Thread hiloRegister = new Thread() {
+            public void registar() {
+                registar.setOnClickListener(new View.OnClickListener()
 
-        registrarusuario();
+                {
+                    @Override
+                    public void onClick(View view) {
 
+
+                        Usuario usuario = new Usuario((long) 0, nombre.getText().toString(), nomdreusuario.getText().toString(), contrasenia.getText().toString(), pais.getText().toString());
+                      DemoApplication.dataBase.usuarioDao().insertarUsuario(usuario);
+
+                    }
+                });
+            }
+        };
 
     }
 
@@ -49,14 +65,6 @@ public class RegistrarActivity extends AppCompatActivity {
     }
 
     public void registrarusuario(){
-        registar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Usuario usuario = new Usuario((long) 0,nombre.getText().toString(),nomdreusuario.getText().toString(),contrasenia.getText().toString(),pais.getText().toString());
-
-                DemoApplication.dataBase.usuarioDao().insertarUsuario(usuario);
-            }
-        });
     }
 }
