@@ -69,7 +69,7 @@ public class RegistrarActivity extends AppCompatActivity {
                 DemoApplication.dataBase.usuarioDao().insertarUsuario(usuario);
                 Intent intent = new Intent(RegistrarActivity.this,HomeActivity.class);
                 startActivity(intent);
-                
+                finish();
 
                 runOnUiThread(new Runnable() {
                     @Override
