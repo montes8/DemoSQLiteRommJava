@@ -14,7 +14,7 @@ public class DemoApplication extends Application{
     public void onCreate() {
         super.onCreate();
         dataBase = Room.databaseBuilder(this,DemoDataBase.class,"demo_database.db")
-                .addCallback(new PoblarBaseDatosCallBack())
+                .addCallback(new PoblarBaseDatosCallBack(this))
                 .build();
     }
 }
