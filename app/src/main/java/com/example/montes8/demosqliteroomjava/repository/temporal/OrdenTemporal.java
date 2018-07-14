@@ -1,6 +1,7 @@
 package com.example.montes8.demosqliteroomjava.repository.temporal;
 
 import com.example.montes8.demosqliteroomjava.model.DetalleTemporal;
+import com.example.montes8.demosqliteroomjava.model.Plato;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,34 @@ public class OrdenTemporal {
         orden.remove(detalleTemporal);
     }
 
-    
+    public static int buscarplato(Plato plato){
+        for (DetalleTemporal a:orden) {
+            if (a.getPlato().getIdPlato() == plato.getIdPlato()){
+                return orden.indexOf(a);
+            }
+        }
+        return -1;
+        }
+
+        public static int optenerPlatoSegunIdice(int indice){
+
+        return orden.get(indice).getCantidad();
+
+        }
+
+    public static void actualizarItemOrden(DetalleTemporal ordenItem,int indic){
+
+        orden.set(indic, ordenItem);
+
+    }
+
+    public void limpiarOrden(){
+
+        orden.clear();
+    }
+
+    public static int totalOrdenes(){
+        return orden.size();
+    }
 
 }
