@@ -21,7 +21,7 @@ public class DetallePlatoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_plato);
 
-        imagen = findViewById(R.id.image_detalles);
+        imagen = findViewById(R.id.image_plato);
         precio = findViewById(R.id.text_precio_detalle);
         calorias = findViewById(R.id.text_calorias);
         descuento = findViewById(R.id.text_descuento);
