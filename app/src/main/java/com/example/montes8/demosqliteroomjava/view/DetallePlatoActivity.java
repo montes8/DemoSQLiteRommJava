@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.model.Plato;
+import com.example.montes8.demosqliteroomjava.utils.DemoUtils;
 
 public class DetallePlatoActivity extends AppCompatActivity {
 
@@ -28,5 +29,11 @@ public class DetallePlatoActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         final Plato datosPlato = extras.getParcelable("detalleplato");
+
+        imagen.setImageDrawable(DemoUtils.getImage(this,datosPlato.getImagen()));
+        precio.setText(String.valueOf(datosPlato.getPrecioPlto()));
+        calorias.setText(datosPlato.getCalorias());
+        descuento.setText(String.valueOf(datosPlato.getDescuento()));
+        descripcion.setText(datosPlato.getDescripcion());
     }
 }
