@@ -1,5 +1,6 @@
 package com.example.montes8.demosqliteroomjava.view;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -67,7 +68,9 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(HomeActivity.this,"historial",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.salir:
-                Toast.makeText(HomeActivity.this,"salir",Toast.LENGTH_SHORT).show();
+                Intent intentsalir = new Intent(HomeActivity.this,LoginActivity.class);
+                startActivity(intentsalir);
+                finish();
                 break;
 
         }
