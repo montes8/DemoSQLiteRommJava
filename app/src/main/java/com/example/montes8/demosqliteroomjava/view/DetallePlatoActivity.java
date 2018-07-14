@@ -2,6 +2,8 @@ package com.example.montes8.demosqliteroomjava.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,5 +37,16 @@ public class DetallePlatoActivity extends AppCompatActivity {
         calorias.setText(datosPlato.getCalorias());
         descuento.setText(String.valueOf(datosPlato.getDescuento()));
         descripcion.setText(datosPlato.getDescripcion());
+
+        Toolbar toolbardetalle = (Toolbar) findViewById(R.id.detalleToolbar);
+        setSupportActionBar(toolbardetalle);
+        getSupportActionBar().setTitle(datosPlato.getNombrePlato());
+        toolbardetalle.setNavigationIcon(R.drawable.ic_atras);
+        toolbardetalle.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 }
