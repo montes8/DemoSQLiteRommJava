@@ -49,7 +49,7 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
         holder.nombre.setText(plato.getNombrePlato());
         holder.precio.setText(String.valueOf(plato.getPrecioPlto()));
 
-        holder.setOnClickListener();
+        holder.setOnClickListenerDetalle(plato);
 
 
     }
@@ -80,17 +80,17 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context,DetallePlatoActivity.class);
-                    context.startActivity(intent);
+
                 }
             });
         }
 
-        private void setOnClickListenerDetalle(){
+        private void setOnClickListenerDetalle(final Plato plato){
             detallePlato.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(context,DetallePlatoActivity.class);
+                    intent.putExtra("detalleplato",plato);
                     context.startActivity(intent);
                 }
             });

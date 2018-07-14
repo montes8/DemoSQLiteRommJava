@@ -2,11 +2,13 @@ package com.example.montes8.demosqliteroomjava.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import io.reactivex.annotations.NonNull;
 
 @Entity
-public class Plato {
+public class Plato implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     private Long idPlato;
@@ -82,4 +84,42 @@ public class Plato {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.idPlato);
+        dest.writeString(this.nombrePlato);
+        dest.writeString(this.imagen);
+        dest.writeValue(this.precioPlto);
+        dest.writeString(this.calorias);
+        dest.writeValue(this.descuento);
+        dest.writeString(this.descripcion);
+    }
+
+    protected Plato(Parcel in) {
+        this.idPlato = (Long) in.readValue(Long.class.getClassLoader());
+        this.nombrePlato = in.readString();
+        this.imagen = in.readString();
+        this.precioPlto = (Double) in.readValue(Double.class.getClassLoader());
+        this.calorias = in.readString();
+        this.descuento = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.descripcion = in.readString();
+    }
+
+    public static final Parcelable.Creator<Plato> CREATOR = new Parcelable.Creator<Plato>() {
+        @Override
+        public Plato createFromParcel(Parcel source) {
+            return new Plato(source);
+        }
+
+        @Override
+        public Plato[] newArray(int size) {
+            return new Plato[size];
+        }
+    };
 }
