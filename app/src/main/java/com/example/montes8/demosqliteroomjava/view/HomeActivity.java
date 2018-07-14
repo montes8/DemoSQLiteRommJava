@@ -65,7 +65,8 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(HomeActivity.this,"menu orden",Toast.LENGTH_SHORT).show();
                break;
             case  R.id.historial:
-                Toast.makeText(HomeActivity.this,"historial",Toast.LENGTH_SHORT).show();
+                Intent intenthistorial = new Intent(HomeActivity.this,HistorialActivity.class);
+                startActivity(intenthistorial);
                 break;
             case R.id.salir:
                 Intent intentsalir = new Intent(HomeActivity.this,LoginActivity.class);
