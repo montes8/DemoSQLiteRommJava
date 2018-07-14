@@ -85,5 +85,15 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
                 }
             });
         }
+
+        private void setOnClickListenerDetalle(){
+            detallePlato.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context,DetallePlatoActivity.class);
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 }
