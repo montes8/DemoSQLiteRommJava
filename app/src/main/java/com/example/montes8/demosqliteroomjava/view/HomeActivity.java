@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 import com.example.montes8.demosqliteroomjava.DemoApplication;
 import com.example.montes8.demosqliteroomjava.R;
@@ -23,7 +26,6 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         recyclerView = findViewById(R.id.my_recyclerview);
 
         ajustarToolbarHome();
@@ -35,16 +37,41 @@ public class HomeActivity extends AppCompatActivity {
         HiloListarPlatos lista = new HiloListarPlatos();
         lista.execute();
 
-
-
-
-    }
+        }
 
     public void ajustarToolbarHome(){
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.homeToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Lista de Platos");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.menu_orden:
+                Toast.makeText(HomeActivity.this,"menu orden",Toast.LENGTH_SHORT).show();
+               break;
+            case  R.id.historial:
+                Toast.makeText(HomeActivity.this,"historial",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.salir:
+                Toast.makeText(HomeActivity.this,"salir",Toast.LENGTH_SHORT).show();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
