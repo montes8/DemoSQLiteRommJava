@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.example.montes8.demosqliteroomjava.DemoApplication;
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.adapter.ListaPlatosAdapter;
+import com.example.montes8.demosqliteroomjava.model.DetallePedido;
 import com.example.montes8.demosqliteroomjava.model.Plato;
 
 import java.util.ArrayList;
@@ -62,7 +63,8 @@ public class HomeActivity extends AppCompatActivity {
         switch (item.getItemId()){
 
             case R.id.menu_orden:
-                Toast.makeText(HomeActivity.this,"menu orden",Toast.LENGTH_SHORT).show();
+                Intent intentorden = new Intent(HomeActivity.this,DetallePedido.class);
+                startActivity(intentorden);
                break;
             case  R.id.historial:
                 Intent intenthistorial = new Intent(HomeActivity.this,HistorialActivity.class);
