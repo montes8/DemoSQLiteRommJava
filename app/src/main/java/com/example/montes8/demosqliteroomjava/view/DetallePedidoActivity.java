@@ -6,11 +6,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.adapter.DetalleAdapter;
 import com.example.montes8.demosqliteroomjava.model.DetalleTemporal;
 import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -19,6 +22,7 @@ public class DetallePedidoActivity extends AppCompatActivity {
     RecyclerView detalleRecyclerView;
     DetalleAdapter detalleAdapter;
     Toolbar toolbarpedido;
+    TextView totalPagar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +30,11 @@ public class DetallePedidoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_pedido);
         detalleRecyclerView = findViewById(R.id.pedido_recyclerview);
         toolbarpedido = (Toolbar) findViewById(R.id.pedidoToolbar);
+        totalPagar = findViewById(R.id.text_subtotal_ordenes);
 
         ajustarToolbardetallepedido();
         pedidoRecyclerView();
+        opteniendoTotal();
 
 
 
@@ -55,4 +61,15 @@ public class DetallePedidoActivity extends AppCompatActivity {
         detalleRecyclerView.setAdapter(detalleAdapter);
 
     }
+
+    private void opteniendoTotal(){
+        ArrayList<DetalleTemporal> ordenTotal = OrdenTemporal.optenerorden();
+        Double total = 0.00;
+        for (DetalleTemporal x:ordenTotal) {
+            total = total + x.getPlato().getPrecioPlto()*x.getCantidad();
+            }
+        totalPagar.setText(String.valueOf(total));
+    }
+
+
 }
