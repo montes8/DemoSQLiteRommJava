@@ -18,35 +18,41 @@ public class DetallePedidoActivity extends AppCompatActivity {
 
     RecyclerView detalleRecyclerView;
     DetalleAdapter detalleAdapter;
-    Toolbar toolbardetalle;
+    Toolbar toolbarpedido;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle_pedido);
         detalleRecyclerView = findViewById(R.id.pedido_recyclerview);
-        toolbardetalle = (Toolbar) findViewById(R.id.detalleToolbar);
+        toolbarpedido = (Toolbar) findViewById(R.id.pedidoToolbar);
 
         ajustarToolbardetallepedido();
+        pedidoRecyclerView();
 
+
+
+    }
+
+    private void ajustarToolbardetallepedido(){
+
+        setSupportActionBar(toolbarpedido);
+        getSupportActionBar().setTitle("Detalle de Ordenes");
+        toolbarpedido.setNavigationIcon(R.drawable.ic_atras);
+        toolbarpedido.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
+
+    private void pedidoRecyclerView(){
         detalleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         detalleAdapter = new DetalleAdapter(this);
         ArrayList<DetalleTemporal> lista = OrdenTemporal.optenerorden();
         detalleAdapter.addList(lista);
         detalleRecyclerView.setAdapter(detalleAdapter);
 
-    }
-
-    private void ajustarToolbardetallepedido(){
-
-        setSupportActionBar(toolbardetalle);
-        getSupportActionBar().setTitle("Detalle de Ordenes");
-        toolbardetalle.setNavigationIcon(R.drawable.ic_atras);
-        toolbardetalle.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
     }
 }
