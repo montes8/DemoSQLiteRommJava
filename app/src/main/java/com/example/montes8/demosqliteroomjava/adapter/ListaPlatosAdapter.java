@@ -1,5 +1,6 @@
 package com.example.montes8.demosqliteroomjava.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -8,13 +9,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.montes8.demosqliteroomjava.R;
+import com.example.montes8.demosqliteroomjava.model.DetalleTemporal;
 import com.example.montes8.demosqliteroomjava.model.Plato;
+import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
 import com.example.montes8.demosqliteroomjava.utils.DemoUtils;
 import com.example.montes8.demosqliteroomjava.view.DetallePlatoActivity;
+import com.example.montes8.demosqliteroomjava.view.LoginActivity;
 
 import java.util.ArrayList;
 
@@ -77,18 +84,47 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
             detallePlato = itemView.findViewById(R.id.image_detalles);
         }
 
-        private void setOnClickListener(){
+        private void setOnClickListener(final Plato plato){
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
                     AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
-                    View dialogView = View.inflate(context,R.layout.dialog_cantidad,null);
+                   final  View dialogView = View.inflate(context,R.layout.dialog_cantidad,null);
+
+                    TextView nombrePlato = dialogView.findViewById(R.id.nombre_plato_dialog);
+                    TextView precioPlato = dialogView.findViewById(R.id.precio_plato_dialog);
+                    final EditText cantidad = dialogView.findViewById(R.id.cantidad_plato_dialog);
+                    Button agregarPlato = dialogView.findViewById(R.id.btnagregar_orden_dialog);
 
                     dialogBuilder.setView(dialogView);
                     dialogBuilder.setCancelable(true);
 
-                  
+                    nombrePlato.setText(plato.getNombrePlato());
+                    precioPlato.setText("$/ "+plato.getPrecioPlto().toString());
+
+                    final Dialog dialog = dialogBuilder.create();
+                    agregarPlato.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                            if(!cantidad.getText().toString().isEmpty()){
+                                Toast.makeText(context,"orden agregada",Toast.LENGTH_SHORT).show();
+                                int cantidadPlatoOrden = Integer.parseInt(cantidad.getText().toString());
+
+
+                                OrdenTemporal.actualizarItemOrden(plato, cantidadPlatoOrden);
+
+                                dialog.dismiss();
+                            }else{
+
+                                Toast.makeText(context,"Ingrese Cantidad",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
+                    dialog.show();
 
                 }
             });
@@ -103,6 +139,21 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
                     context.startActivity(intent);
                 }
             });
+        }
+
+        public static void agregarOrActulizarItemorde(Plato plato,int cantidad){
+            int indicePlatoSiExiste = OrdenTemporal.buscarplato(plato);
+            if (indicePlatoSiExiste >= 0){
+                int catidadActual = OrdenTemporal.optenerCantidadPlatoSegunIdice(indicePlatoSiExiste);
+
+                int totalCantidad = catidadActual + cantidad;
+                DetalleTemporal pedidoActulizado = new DetalleTemporal(plato,totalCantidad);
+                OrdenTemporal.actualizarItemOrden(pedidoActulizado,indicePlatoSiExiste);
+            }else{
+                DetalleTemporal nuevaOrden = new DetalleTemporal(plato,cantidad);
+                OrdenTemporal.agregaItemOrden(nuevaOrden);
+                
+            }
         }
     }
 }

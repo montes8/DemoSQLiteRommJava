@@ -30,13 +30,13 @@ public class OrdenTemporal {
         return -1;
         }
 
-        public static int optenerPlatoSegunIdice(int indice){
+     public static int optenerCantidadPlatoSegunIdice(int indice){
 
         return orden.get(indice).getCantidad();
 
         }
 
-    public static void actualizarItemOrden(DetalleTemporal ordenItem,int indic){
+    public static void actualizarItemOrden(DetalleTemporal ordenItem, int indic){
 
         orden.set(indic, ordenItem);
 
