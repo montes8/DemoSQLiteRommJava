@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,10 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
         holder.precio.setText(String.valueOf(plato.getPrecioPlto()));
 
         holder.setOnClickListenerDetalle(plato);
+
+        holder.setOnClickListener(plato);
+
+        holder.setOnClickAgregarOrden(plato);
 
 
     }
@@ -123,10 +128,8 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
                         }
                     });
 
-
                     dialog.show();
-
-                }
+                    }
             });
         }
 
@@ -141,7 +144,14 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
             });
         }
 
-        public static void agregarOrActulizarItemorde(Plato plato,int cantidad){
+        private void setOnClickAgregarOrden(Plato plato){
+
+            agregarOrActulizarItemorde(plato,1);
+            Toast.makeText(context,"orden agregada",Toast.LENGTH_SHORT).show();
+            Log.d("lista","orden ="+OrdenTemporal.optenerorden());
+        }
+
+        private static void agregarOrActulizarItemorde(Plato plato,int cantidad){
             int indicePlatoSiExiste = OrdenTemporal.buscarplato(plato);
             if (indicePlatoSiExiste >= 0){
                 int catidadActual = OrdenTemporal.optenerCantidadPlatoSegunIdice(indicePlatoSiExiste);
