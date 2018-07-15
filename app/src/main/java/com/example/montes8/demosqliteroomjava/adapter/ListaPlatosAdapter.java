@@ -113,7 +113,7 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
                                 int cantidadPlatoOrden = Integer.parseInt(cantidad.getText().toString());
 
 
-                                OrdenTemporal.actualizarItemOrden(plato, cantidadPlatoOrden);
+                                agregarOrActulizarItemorde(plato, cantidadPlatoOrden);
 
                                 dialog.dismiss();
                             }else{
@@ -152,7 +152,7 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
             }else{
                 DetalleTemporal nuevaOrden = new DetalleTemporal(plato,cantidad);
                 OrdenTemporal.agregaItemOrden(nuevaOrden);
-                
+
             }
         }
     }
