@@ -144,11 +144,18 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
             });
         }
 
-        private void setOnClickAgregarOrden(Plato plato){
+        private void setOnClickAgregarOrden(final Plato plato){
 
-            agregarOrActulizarItemorde(plato,1);
-            Toast.makeText(context,"orden agregada",Toast.LENGTH_SHORT).show();
-            Log.d("lista","orden ="+OrdenTemporal.optenerorden());
+            agregarplato.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    agregarOrActulizarItemorde(plato,1);
+                    Toast.makeText(context,"orden agregada",Toast.LENGTH_SHORT).show();
+                    Log.d("lista","orden ="+OrdenTemporal.optenerorden());
+                }
+            });
+
+
         }
 
         private static void agregarOrActulizarItemorde(Plato plato,int cantidad){
