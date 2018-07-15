@@ -25,7 +25,7 @@ public class DetalleAdapter extends RecyclerView.Adapter<DetalleAdapter.DetalleP
 
     private ArrayList<DetalleTemporal> listaDetallesOrdenes;
 
-    public void addList(ArrayList<DetalleTemporal> listaPlatos){
+    public void addList(ArrayList<DetalleTemporal> listaDetallesOrdenes){
         this.listaDetallesOrdenes = listaDetallesOrdenes;
         notifyDataSetChanged();
     }

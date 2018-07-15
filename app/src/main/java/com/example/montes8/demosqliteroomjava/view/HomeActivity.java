@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.example.montes8.demosqliteroomjava.DemoApplication;
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.adapter.ListaPlatosAdapter;
-import com.example.montes8.demosqliteroomjava.model.DetallePedido;
 import com.example.montes8.demosqliteroomjava.model.Plato;
 
 import java.util.ArrayList;
@@ -31,8 +30,6 @@ public class HomeActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.my_recyclerview);
 
         ajustarToolbarHome();
-
-        recyclerView = findViewById(R.id.my_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new ListaPlatosAdapter(this);
 
@@ -63,7 +60,7 @@ public class HomeActivity extends AppCompatActivity {
         switch (item.getItemId()){
 
             case R.id.menu_orden:
-                Intent intentorden = new Intent(HomeActivity.this,DetallePedido.class);
+                Intent intentorden = new Intent(HomeActivity.this,DetallePedidoActivity.class);
                 startActivity(intentorden);
                break;
             case  R.id.historial:
