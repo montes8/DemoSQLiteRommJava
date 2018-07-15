@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.model.DetalleTemporal;
-import com.example.montes8.demosqliteroomjava.model.Plato;
+import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
 import com.example.montes8.demosqliteroomjava.utils.DemoUtils;
 import java.util.ArrayList;
 
@@ -41,11 +41,17 @@ public class DetalleAdapter extends RecyclerView.Adapter<DetalleAdapter.DetalleP
 
     @Override
     public void onBindViewHolder(@NonNull DetalleAdapter.DetallePedidoViewholder holder, int position) {
-        DetalleTemporal ordenes = listaDetallesOrdenes.get(position);
+        DetalleTemporal detallesaPedido = listaDetallesOrdenes.get(position);
 
-        holder.imagen.setImageDrawable(DemoUtils.getImage(context,plato.getImagen()));
-        holder.nombre.setText(plato.getNombrePlato());
-        holder.precio.setText(String.valueOf(plato.getPrecioPlto()));
+        Double subTotal = detallesaPedido.getPlato().getPrecioPlto() * detallesaPedido.getCantidad();
+
+        holder.imagendetalle.setImageDrawable(DemoUtils.getImage(context,detallesaPedido.getPlato().getImagen()));
+        holder.idPlatoNombre.setText(detallesaPedido.getPlato().getNombrePlato());
+        holder.precioPlatounitario.setText(String.valueOf(detallesaPedido.getPlato().getPrecioPlto()));
+        holder.cantidad.setText(String.valueOf(detallesaPedido.getCantidad()));
+        holder.subtotal.setText("$/"+ String.valueOf(subTotal));
+
+        holder.setOnClickListenerEliminarorden(detallesaPedido);
 
 
 
@@ -59,18 +65,31 @@ public class DetalleAdapter extends RecyclerView.Adapter<DetalleAdapter.DetalleP
     public static class DetallePedidoViewholder extends RecyclerView.ViewHolder{
 
         Context context;
-        private ImageView imagen,agregarplato,detallePlato;
-        private TextView nombre, precio;
+        private ImageView imagendetalle,eliminarorden;
+        private TextView idPlatoNombre,precioPlatounitario,cantidad,subtotal;
+
 
         private DetallePedidoViewholder(View itemView) {
             super(itemView);
 
             context = itemView.getContext();
-            imagen = itemView.findViewById(R.id.image_view_plato);
-            nombre = itemView.findViewById(R.id.text_nombre_pletoitem);
-            precio = itemView.findViewById(R.id.text_precio);
-            agregarplato = itemView.findViewById(R.id.image_add);
-            detallePlato = itemView.findViewById(R.id.image_detalles);
+            imagendetalle = itemView.findViewById(R.id.image_view_plato_detalle);
+            idPlatoNombre = itemView.findViewById(R.id.text_id_platodetalle);
+            precioPlatounitario = itemView.findViewById(R.id.text_precio_unitario);
+            cantidad = itemView.findViewById(R.id.text_cantidad_platos);
+            subtotal = itemView.findViewById(R.id.text_subtotal_detalle);
+            eliminarorden = itemView.findViewById(R.id.image_eliminar);
+        }
+
+        private void setOnClickListenerEliminarorden(final DetalleTemporal detalleTemporal){
+            eliminarorden.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    OrdenTemporal.eliminarorden(detalleTemporal);
+
+                }
+            });
         }
 
 
