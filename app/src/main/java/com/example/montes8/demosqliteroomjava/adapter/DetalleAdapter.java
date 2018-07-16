@@ -13,6 +13,8 @@ import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.model.DetalleTemporal;
 import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
 import com.example.montes8.demosqliteroomjava.utils.DemoUtils;
+import com.example.montes8.demosqliteroomjava.view.DetallePedidoActivity;
+
 import java.util.ArrayList;
 
 public class DetalleAdapter extends RecyclerView.Adapter<DetalleAdapter.DetallePedidoViewholder> {
@@ -53,8 +55,6 @@ public class DetalleAdapter extends RecyclerView.Adapter<DetalleAdapter.DetalleP
 
         holder.setOnClickListenerEliminarorden(detallesaPedido);
 
-
-
     }
 
     @Override
@@ -67,10 +67,14 @@ public class DetalleAdapter extends RecyclerView.Adapter<DetalleAdapter.DetalleP
         Context context;
         private ImageView imagendetalle,eliminarorden;
         private TextView idPlatoNombre,precioPlatounitario,cantidad,subtotal;
+        private DetallePedidoActivity refrescarLista;
+
+
 
 
         private DetallePedidoViewholder(View itemView) {
             super(itemView);
+
 
             context = itemView.getContext();
             imagendetalle = itemView.findViewById(R.id.image_view_plato_detalle);
@@ -87,6 +91,7 @@ public class DetalleAdapter extends RecyclerView.Adapter<DetalleAdapter.DetalleP
                 public void onClick(View view) {
 
                     OrdenTemporal.eliminarorden(detalleTemporal);
+
 
                 }
             });

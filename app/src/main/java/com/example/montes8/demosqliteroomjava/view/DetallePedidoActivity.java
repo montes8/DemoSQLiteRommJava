@@ -1,10 +1,14 @@
 package com.example.montes8.demosqliteroomjava.view;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -34,9 +38,15 @@ public class DetallePedidoActivity extends AppCompatActivity {
         totalPagar = findViewById(R.id.text_subtotal_ordenes);
 
         ajustarToolbardetallepedido();
-        pedidoRecyclerView();
         opteniendoTotal();
 
+        pedidoRecyclerView();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
 
     }
@@ -59,7 +69,7 @@ public class DetallePedidoActivity extends AppCompatActivity {
         detalleAdapter = new DetalleAdapter(this);
 
         refrescarListaDetalle();
-        
+
     }
 
     private void refrescarListaDetalle(){
@@ -89,6 +99,38 @@ public class DetallePedidoActivity extends AppCompatActivity {
 
         return fecha;
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu,menu);
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case R.id.menu_orden:
+                Intent intentorden = new Intent(HomeActivity.this,DetallePedidoActivity.class);
+                startActivity(intentorden);
+                break;
+            case  R.id.historial:
+                Intent intenthistorial = new Intent(HomeActivity.this,HistorialActivity.class);
+                startActivity(intenthistorial);
+                break;
+            case R.id.salir:
+                Intent intentsalir = new Intent(HomeActivity.this,LoginActivity.class);
+                startActivity(intentsalir);
+                finish();
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
