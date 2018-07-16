@@ -16,6 +16,7 @@ import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DetallePedidoActivity extends AppCompatActivity {
 
@@ -69,6 +70,19 @@ public class DetallePedidoActivity extends AppCompatActivity {
             total = total + x.getPlato().getPrecioPlto()*x.getCantidad();
             }
         totalPagar.setText(String.valueOf(total));
+    }
+
+    private String mostrarFechaIngresoOrden(){
+
+        Calendar c = Calendar.getInstance();
+        int dia = c.get(Calendar.DAY_OF_MONTH);
+        int mes = c.get(Calendar.MONTH);
+        int mess = mes-1;
+        int anio = c.get(Calendar.YEAR);
+        String fecha = dia+"/"+mess+"/"+anio;
+
+        return fecha
+
     }
 
 
