@@ -1,5 +1,7 @@
 package com.example.montes8.demosqliteroomjava.view;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +19,7 @@ import com.example.montes8.demosqliteroomjava.DemoApplication;
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.adapter.DetalleAdapter;
 import com.example.montes8.demosqliteroomjava.model.DetalleTemporal;
+import com.example.montes8.demosqliteroomjava.model.Pedido;
 import com.example.montes8.demosqliteroomjava.model.Plato;
 import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
 
@@ -129,7 +132,22 @@ public class DetallePedidoActivity extends AppCompatActivity {
     public class HiloIngresarDetalleEndPedido extends AsyncTask<Void,Integer,Void> {
 
 
+        @Override
+        protected Void doInBackground(Void... voids) {
 
+            String fecha = mostrarFechaIngresoOrden();
+            SharedPreferences sharedPreferences = getSharedPreferences("idUsuario", Context.MODE_PRIVATE);
+            Long idusuario = sharedPreferences.getLong("clave",0);
+            Pedido pedido = new Pedido(idusuario,fecha,Double.parseDouble(String.valueOf(totalPagar)));
+
+            
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
 
 }

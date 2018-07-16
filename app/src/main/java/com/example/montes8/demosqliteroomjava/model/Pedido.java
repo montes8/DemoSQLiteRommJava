@@ -17,8 +17,8 @@ public class Pedido {
     private String fecha;
     private Double montoTotal;
 
-    public Pedido(Long idPedido, Long userId, String fecha, Double montoTotal) {
-        this.idPedido = idPedido;
+    public Pedido( Long userId, String fecha, Double montoTotal) {
+
         this.userId = userId;
         this.fecha = fecha;
         this.montoTotal = montoTotal;

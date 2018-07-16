@@ -1,6 +1,8 @@
 package com.example.montes8.demosqliteroomjava.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -70,6 +72,10 @@ public class LoginActivity extends AppCompatActivity {
         protected Usuario doInBackground(Void... voids) {
 
             Usuario usuario = DemoApplication.dataBase.usuarioDao().userLOgin(nombre.getText().toString(),contasenia.getText().toString());
+            SharedPreferences sharedPreferences = getSharedPreferences("idUsuario", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putLong("idUsu", usuario.getIdUsu());
+            editor.commit();
             return usuario;
         }
 
