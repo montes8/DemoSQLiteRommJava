@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.montes8.demosqliteroomjava.DemoApplication;
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.adapter.DetalleAdapter;
+import com.example.montes8.demosqliteroomjava.model.DetallePedido;
 import com.example.montes8.demosqliteroomjava.model.DetalleTemporal;
 import com.example.montes8.demosqliteroomjava.model.Pedido;
 import com.example.montes8.demosqliteroomjava.model.Plato;
@@ -140,7 +141,20 @@ public class DetallePedidoActivity extends AppCompatActivity {
             Long idusuario = sharedPreferences.getLong("clave",0);
             Pedido pedido = new Pedido(idusuario,fecha,Double.parseDouble(String.valueOf(totalPagar)));
 
-            
+
+            Long nuevoIdPedido = DemoApplication.dataBase.pedidoDao().insertPedido(pedido);
+
+            ArrayList<DetalleTemporal> detalleOrden = OrdenTemporal.optenerorden();
+            for (DetalleTemporal x:detalleOrden) {
+
+                Double subtotal= x.getPlato().getPrecioPlto()*x.getCantidad();
+                DetallePedido detallePedido = new DetallePedido(nuevoIdPedido,x.getPlato().getIdPlato(),x.getCantidad(),subtotal);
+
+                Long a= DemoApplication.dataBase.detallePedidoDao().insertarDetallepedido(detallePedido);
+            }
+
+
+
             return null;
         }
 

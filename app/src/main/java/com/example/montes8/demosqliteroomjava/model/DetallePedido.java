@@ -19,8 +19,8 @@ public class DetallePedido {
     public Integer cantidad;
     public Double subTotal;
 
-    public DetallePedido(Long idDetalle, Long pedidoid, Long platoId, Integer cantidad, Double subTotal) {
-        this.idDetalle = idDetalle;
+    public DetallePedido(Long pedidoid, Long platoId, Integer cantidad, Double subTotal) {
+
         this.pedidoid = pedidoid;
         this.platoId = platoId;
         this.cantidad = cantidad;
