@@ -1,6 +1,6 @@
 package com.example.montes8.demosqliteroomjava.view;
 
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,13 +11,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.montes8.demosqliteroomjava.DemoApplication;
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.adapter.DetalleAdapter;
 import com.example.montes8.demosqliteroomjava.model.DetalleTemporal;
+import com.example.montes8.demosqliteroomjava.model.Plato;
 import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -104,7 +106,7 @@ public class DetallePedidoActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
+        inflater.inflate(R.menu.menu_orden,menu);
 
 
         return super.onCreateOptionsMenu(menu);
@@ -115,23 +117,19 @@ public class DetallePedidoActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
 
-            case R.id.menu_orden:
-                Intent intentorden = new Intent(HomeActivity.this,DetallePedidoActivity.class);
-                startActivity(intentorden);
+            case R.id.menu_ordenar_pedido:
+
                 break;
-            case  R.id.historial:
-                Intent intenthistorial = new Intent(HomeActivity.this,HistorialActivity.class);
-                startActivity(intenthistorial);
-                break;
-            case R.id.salir:
-                Intent intentsalir = new Intent(HomeActivity.this,LoginActivity.class);
-                startActivity(intentsalir);
-                finish();
-                break;
+
 
         }
         return super.onOptionsItemSelected(item);
     }
 
+    public class HiloIngresarDetalleEndPedido extends AsyncTask<Void,Integer,Void> {
+
+
+
+    }
 
 }
