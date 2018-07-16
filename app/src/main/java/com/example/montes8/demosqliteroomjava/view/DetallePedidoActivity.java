@@ -57,10 +57,16 @@ public class DetallePedidoActivity extends AppCompatActivity {
     private void pedidoRecyclerView(){
         detalleRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         detalleAdapter = new DetalleAdapter(this);
-        ArrayList<DetalleTemporal> lista = OrdenTemporal.optenerorden();
-        detalleAdapter.addList(lista);
-        detalleRecyclerView.setAdapter(detalleAdapter);
 
+        refrescarListaDetalle();
+        
+    }
+
+    private void refrescarListaDetalle(){
+
+        ArrayList<DetalleTemporal> orden = OrdenTemporal.optenerorden();
+        detalleAdapter.addList(orden);
+        detalleRecyclerView.setAdapter(detalleAdapter);
     }
 
     private void opteniendoTotal(){
@@ -81,7 +87,7 @@ public class DetallePedidoActivity extends AppCompatActivity {
         int anio = c.get(Calendar.YEAR);
         String fecha = dia+"/"+mess+"/"+anio;
 
-        return fecha
+        return fecha;
 
     }
 
