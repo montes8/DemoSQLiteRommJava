@@ -133,15 +133,16 @@ public class DetallePedidoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public class HiloIngresarDetalleEndPedido extends AsyncTask<Void,Integer,Void> {
+    public class HiloIngresarDetalleEndPedido extends AsyncTask<Void,Integer,Long> {
 
 
         @Override
-        protected Void doInBackground(Void... voids) {
+        protected Long doInBackground(Void... voids) {
 
             String fecha = mostrarFechaIngresoOrden();
             SharedPreferences sharedPreferences = getSharedPreferences("idUsuario", Context.MODE_PRIVATE);
             Long idusuario = sharedPreferences.getLong("idUsu",0);
+            Long a = 0L;
             ArrayList<DetalleTemporal> ordenTotal = OrdenTemporal.optenerorden();
             Double total = 0.00;
             for (DetalleTemporal x:ordenTotal) {
@@ -149,8 +150,6 @@ public class DetallePedidoActivity extends AppCompatActivity {
             }
 
             Pedido pedido = new Pedido(idusuario,fecha,total);
-
-
             Long nuevoIdPedido = DemoApplication.dataBase.pedidoDao().insertPedido(pedido);
 
             ArrayList<DetalleTemporal> detalleOrden = OrdenTemporal.optenerorden();
@@ -159,17 +158,24 @@ public class DetallePedidoActivity extends AppCompatActivity {
                 Double subtotal= x.getPlato().getPrecioPlto()*x.getCantidad();
                 DetallePedido detallePedido = new DetallePedido(nuevoIdPedido,x.getPlato().getIdPlato(),x.getCantidad(),subtotal);
 
-                Long a= DemoApplication.dataBase.detallePedidoDao().insertarDetallepedido(detallePedido);
+                 a= DemoApplication.dataBase.detallePedidoDao().insertarDetallepedido(detallePedido);
             }
 
-
-
-         return null;
+         return a;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(Long aLong) {
+            super.onPostExecute(aLong);
+
+            if (aLong>0){
+
+                Toast.makeText(DetallePedidoActivity.this,"Su orden fue registrada",Toast.LENGTH_SHORT).show();
+                finish();
+                OrdenTemporal.optenerorden();
+            }else{
+                Toast.makeText(DetallePedidoActivity.this,"Ocurrio un Error",Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
