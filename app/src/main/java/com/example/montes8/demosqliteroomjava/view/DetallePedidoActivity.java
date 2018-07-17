@@ -23,6 +23,7 @@ import com.example.montes8.demosqliteroomjava.model.DetalleTemporal;
 import com.example.montes8.demosqliteroomjava.model.Pedido;
 import com.example.montes8.demosqliteroomjava.model.Plato;
 import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
+import com.example.montes8.demosqliteroomjava.repository.temporal.Singleton;
 
 
 import java.util.ArrayList;
@@ -172,7 +173,7 @@ public class DetallePedidoActivity extends AppCompatActivity {
 
                 Toast.makeText(DetallePedidoActivity.this,"Su orden fue registrada",Toast.LENGTH_SHORT).show();
                 finish();
-                OrdenTemporal.optenerorden();
+                OrdenTemporal.limpiarOrden();
             }else{
                 Toast.makeText(DetallePedidoActivity.this,"Ocurrio un Error",Toast.LENGTH_SHORT).show();
             }

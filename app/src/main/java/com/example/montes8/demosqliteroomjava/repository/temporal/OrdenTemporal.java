@@ -42,7 +42,7 @@ public class OrdenTemporal {
 
     }
 
-    public void limpiarOrden(){
+    public static void limpiarOrden(){
 
         orden.clear();
     }
