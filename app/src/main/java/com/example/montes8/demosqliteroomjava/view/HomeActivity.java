@@ -15,6 +15,7 @@ import com.example.montes8.demosqliteroomjava.DemoApplication;
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.adapter.ListaPlatosAdapter;
 import com.example.montes8.demosqliteroomjava.model.Plato;
+import com.example.montes8.demosqliteroomjava.model.Usuario;
 import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
 
 import java.util.ArrayList;
@@ -70,8 +71,36 @@ public class HomeActivity extends AppCompatActivity {
                 }
                break;
             case  R.id.historial:
-                Intent intenthistorial = new Intent(HomeActivity.this,HistorialActivity.class);
-                startActivity(intenthistorial);
+
+                Thread hiloValidar= new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                       final int listafila = DemoApplication.dataBase.pedidoDao().optieneCantidadFila();
+
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(listafila > 0){
+                                    Intent intenthistorial = new Intent(HomeActivity.this,HistorialActivity.class);
+                                    startActivity(intenthistorial);
+                                }else{
+                                    Toast.makeText(HomeActivity.this,"Historial Vacio",Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        });
+
+                    }
+                }) ;
+
+                hiloValidar.start();
+
+
+
+
+
                 break;
             case R.id.salir:
                 Intent intentsalir = new Intent(HomeActivity.this,LoginActivity.class);
