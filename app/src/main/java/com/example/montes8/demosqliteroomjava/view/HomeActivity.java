@@ -15,6 +15,7 @@ import com.example.montes8.demosqliteroomjava.DemoApplication;
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.adapter.ListaPlatosAdapter;
 import com.example.montes8.demosqliteroomjava.model.Plato;
+import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
 
 import java.util.ArrayList;
 
@@ -60,8 +61,13 @@ public class HomeActivity extends AppCompatActivity {
         switch (item.getItemId()){
 
             case R.id.menu_orden:
+
+                if (OrdenTemporal.optenerorden() != null){
                 Intent intentorden = new Intent(HomeActivity.this,DetallePedidoActivity.class);
                 startActivity(intentorden);
+                }else{
+                    Toast.makeText(HomeActivity.this,"Aun no has Agregado Ninguna orden",Toast.LENGTH_SHORT).show();
+                }
                break;
             case  R.id.historial:
                 Intent intenthistorial = new Intent(HomeActivity.this,HistorialActivity.class);
