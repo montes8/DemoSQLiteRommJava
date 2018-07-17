@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class OrdenTemporal {
 
+
     private static ArrayList<DetalleTemporal> orden = new ArrayList<>();
 
     public static void agregaItemOrden(DetalleTemporal detalleTemporal){

@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
 
             case R.id.menu_orden:
 
-                if (OrdenTemporal.optenerorden() != null){
+                if (!OrdenTemporal.optenerorden().isEmpty()){
                 Intent intentorden = new Intent(HomeActivity.this,DetallePedidoActivity.class);
                 startActivity(intentorden);
                 }else{
