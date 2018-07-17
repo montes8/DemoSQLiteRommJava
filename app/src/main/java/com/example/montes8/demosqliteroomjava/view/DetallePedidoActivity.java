@@ -123,6 +123,9 @@ public class DetallePedidoActivity extends AppCompatActivity {
 
             case R.id.menu_ordenar_pedido:
 
+                HiloIngresarDetalleEndPedido pedido = new HiloIngresarDetalleEndPedido();
+                pedido.execute();
+
                 break;
 
 
@@ -138,8 +141,14 @@ public class DetallePedidoActivity extends AppCompatActivity {
 
             String fecha = mostrarFechaIngresoOrden();
             SharedPreferences sharedPreferences = getSharedPreferences("idUsuario", Context.MODE_PRIVATE);
-            Long idusuario = sharedPreferences.getLong("clave",0);
-            Pedido pedido = new Pedido(idusuario,fecha,Double.parseDouble(String.valueOf(totalPagar)));
+            Long idusuario = sharedPreferences.getLong("idUsu",0);
+            ArrayList<DetalleTemporal> ordenTotal = OrdenTemporal.optenerorden();
+            Double total = 0.00;
+            for (DetalleTemporal x:ordenTotal) {
+                total = total + x.getPlato().getPrecioPlto()*x.getCantidad();
+            }
+
+            Pedido pedido = new Pedido(idusuario,fecha,total);
 
 
             Long nuevoIdPedido = DemoApplication.dataBase.pedidoDao().insertPedido(pedido);
@@ -155,7 +164,7 @@ public class DetallePedidoActivity extends AppCompatActivity {
 
 
 
-            return null;
+         return null;
         }
 
         @Override
