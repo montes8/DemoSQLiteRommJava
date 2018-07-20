@@ -17,7 +17,8 @@ public class HistorialPedidoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historial_pedido);
-        toolbarhistorialpedido = (Toolbar) findViewById(R.id.pedidoToolbar);
+        toolbarhistorialpedido = (Toolbar) findViewById(R.id.historialToolbar);
+        ajustarToolbarhistorialpedido();
 
         Bundle extras = getIntent().getExtras();
         assert extras != null;
@@ -27,7 +28,7 @@ public class HistorialPedidoActivity extends AppCompatActivity {
     private void ajustarToolbarhistorialpedido(){
 
         setSupportActionBar(toolbarhistorialpedido);
-        getSupportActionBar().setTitle("Detalle de Ordenes");
+        getSupportActionBar().setTitle("Detalle de Pedidos");
         toolbarhistorialpedido.setNavigationIcon(R.drawable.ic_atras);
         toolbarhistorialpedido.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
