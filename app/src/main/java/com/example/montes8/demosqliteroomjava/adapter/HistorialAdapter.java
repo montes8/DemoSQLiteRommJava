@@ -52,6 +52,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.Hist
        holder.idPedido.setText(String.valueOf(pedido.getIdPedido()));
        holder.totalPagar.setText(String.valueOf(pedido.getMontoTotal()));
        holder.fecha.setText(pedido.getFecha());
+       holder.setOnClickListenerDetallePedido(pedido);
 
     }
 
@@ -80,7 +81,7 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.Hist
                 public void onClick(View view) {
 
                     Intent intent = new Intent(context,HistorialPedidoActivity.class);
-                    intent.putExtra("detalleplato",pedido);
+                    intent.putExtra("historialpedido",pedido);
                     context.startActivity(intent);
 
                 }
