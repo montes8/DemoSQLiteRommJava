@@ -72,6 +72,8 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
             return listaPlatos.size();
     }
 
+
+
     public static class PlatoViewholder extends RecyclerView.ViewHolder{
 
         Context context;

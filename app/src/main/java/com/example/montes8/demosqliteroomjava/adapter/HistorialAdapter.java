@@ -1,20 +1,29 @@
 package com.example.montes8.demosqliteroomjava.adapter;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.montes8.demosqliteroomjava.R;
 import com.example.montes8.demosqliteroomjava.model.DetalleTemporal;
 import com.example.montes8.demosqliteroomjava.model.Pedido;
+import com.example.montes8.demosqliteroomjava.model.Plato;
 import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
 import com.example.montes8.demosqliteroomjava.utils.DemoUtils;
 import com.example.montes8.demosqliteroomjava.view.DetallePedidoActivity;
+import com.example.montes8.demosqliteroomjava.view.DetallePlatoActivity;
+import com.example.montes8.demosqliteroomjava.view.HistorialPedidoActivity;
 
 import java.util.ArrayList;
 
@@ -59,11 +68,23 @@ public class HistorialAdapter extends RecyclerView.Adapter<HistorialAdapter.Hist
         private HistorialViewholder(View itemView) {
             super(itemView);
 
-
             context = itemView.getContext();
             idPedido = itemView.findViewById(R.id.id_pedido);
             totalPagar = itemView.findViewById(R.id.fecha_pedido);
             fecha = itemView.findViewById(R.id.total_pagar_pedido);
+        }
+
+        private void setOnClickListenerDetallePedido(final Pedido pedido){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(context,HistorialPedidoActivity.class);
+                    intent.putExtra("detalleplato",pedido);
+                    context.startActivity(intent);
+
+                }
+            });
         }
 
     }
