@@ -1,6 +1,8 @@
 package com.example.montes8.demosqliteroomjava.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -66,7 +68,10 @@ public class RegistrarActivity extends AppCompatActivity {
             public void run() {
 
                 Usuario usuario = new Usuario(nombre.getText().toString(), nomdreusuario.getText().toString(), contrasenia.getText().toString(), pais.getText().toString());
-                DemoApplication.dataBase.usuarioDao().insertarUsuario(usuario);
+                Long nuevoId = DemoApplication.dataBase.usuarioDao().insertarUsuario(usuario);
+                SharedPreferences sharedPreferences = getSharedPreferences("idUsuario", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putLong("idUsu",nuevoId);
                 Intent intent = new Intent(RegistrarActivity.this,HomeActivity.class);
                 startActivity(intent);
                 finish();
