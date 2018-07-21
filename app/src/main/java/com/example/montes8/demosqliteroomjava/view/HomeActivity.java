@@ -17,6 +17,7 @@ import com.example.montes8.demosqliteroomjava.adapter.ListaPlatosAdapter;
 import com.example.montes8.demosqliteroomjava.model.Plato;
 import com.example.montes8.demosqliteroomjava.model.Usuario;
 import com.example.montes8.demosqliteroomjava.repository.temporal.OrdenTemporal;
+import com.example.montes8.demosqliteroomjava.utils.Converter;
 
 import java.util.ArrayList;
 
@@ -51,6 +52,9 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu,menu);
+
+        MenuItem menuItem = menu.findItem(R.id.menu_orden);
+        menuItem.setIcon(Converter.convertLayoutToImage(HomeActivity.this,OrdenTemporal.totalOrdenes(),R.drawable.ic_orden));
 
 
         return super.onCreateOptionsMenu(menu);

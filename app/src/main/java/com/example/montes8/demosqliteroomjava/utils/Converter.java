@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.montes8.demosqliteroomjava.R;
 
-public class Coverter {
+public class Converter {
 
     public static Drawable convertLayoutToImage(Context mContext, int count, int drawableId){
         LayoutInflater inflater = LayoutInflater.from(mContext);
