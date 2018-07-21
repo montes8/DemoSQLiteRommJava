@@ -1,5 +1,7 @@
 package com.example.montes8.demosqliteroomjava.view;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -55,9 +57,11 @@ public class HistorialActivity extends AppCompatActivity {
 
         @Override
         protected ArrayList<Pedido> doInBackground(Void... voids) {
+            SharedPreferences sharedPreferences = getSharedPreferences("idUsuario", Context.MODE_PRIVATE);
+            Long idusuario = sharedPreferences.getLong("idUsu",0);
 
 
-            ArrayList<Pedido>  lista = (ArrayList<Pedido>) DemoApplication.dataBase.pedidoDao().listarPedidos();
+            ArrayList<Pedido>  lista = (ArrayList<Pedido>) DemoApplication.dataBase.pedidoDao().verpedidoSegunUsuario(idusuario);
             return lista;
         }
 
