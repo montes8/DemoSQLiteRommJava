@@ -9,30 +9,27 @@ public class OrdenTemporal {
 
 
     private static ArrayList<DetalleTemporal> orden = new ArrayList<>();
+    private static OrdenTemporal ordenlista;
+    public static OrdenTemporal getInstance() {
 
-    public OrdenTemporal() {
-    }
+        if (ordenlista == null){
 
-    public static ArrayList<DetalleTemporal> getInstance() {
-
-        if (orden == null){
-
-            orden = new ArrayList<DetalleTemporal>();
+            ordenlista = new OrdenTemporal();
         }
 
-        return orden;
+        return ordenlista;
     }
 
 
-    public static void agregaItemOrden(DetalleTemporal detalleTemporal){
+    public  void agregaItemOrden(DetalleTemporal detalleTemporal){
         orden.add(detalleTemporal);
     }
 
-    public static ArrayList<DetalleTemporal> optenerorden(){
+    public  ArrayList<DetalleTemporal> optenerorden(){
         return orden;
     }
 
-    public static void eliminarorden(DetalleTemporal detalleTemporal){
+    public  void eliminarorden(DetalleTemporal detalleTemporal){
         orden.remove(detalleTemporal);
     }
 
@@ -45,24 +42,24 @@ public class OrdenTemporal {
         return -1;
         }
 
-     public static int optenerCantidadPlatoSegunIdice(int indice){
+     public int optenerCantidadPlatoSegunIdice(int indice){
 
         return orden.get(indice).getCantidad();
 
         }
 
-    public static void actualizarItemOrden(DetalleTemporal ordenItem, int indic){
+    public void actualizarItemOrden(DetalleTemporal ordenItem, int indic){
 
         orden.set(indic, ordenItem);
 
     }
 
-    public static void limpiarOrden(){
+    public void limpiarOrden(){
 
         orden.clear();
     }
 
-    public static int totalOrdenes(){
+    public int totalOrdenes(){
         return orden.size();
     }
 

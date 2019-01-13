@@ -85,6 +85,7 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
             precio = itemView.findViewById(R.id.text_precio);
             agregarplato = itemView.findViewById(R.id.image_add);
             detallePlato = itemView.findViewById(R.id.image_detalles);
+
         }
 
         private void setOnClickListener(final Plato plato){
@@ -147,9 +148,9 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
             agregarplato.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     agregarOrActulizarItemorde(plato,1);
                     Toast.makeText(context,"orden agregada",Toast.LENGTH_SHORT).show();
-                    Log.d("lista","orden ="+OrdenTemporal.optenerorden());
                 }
             });
 
@@ -158,15 +159,20 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
 
         private static void agregarOrActulizarItemorde(Plato plato,int cantidad){
             int indicePlatoSiExiste = OrdenTemporal.buscarplato(plato);
+            OrdenTemporal orden = OrdenTemporal.getInstance();
             if (indicePlatoSiExiste >= 0){
-                int catidadActual = OrdenTemporal.optenerCantidadPlatoSegunIdice(indicePlatoSiExiste);
+
+                int catidadActual = orden.optenerCantidadPlatoSegunIdice(indicePlatoSiExiste);
+                //int catidadActual = OrdenTemporal.optenerCantidadPlatoSegunIdice(indicePlatoSiExiste);
 
                 int totalCantidad = catidadActual + cantidad;
                 DetalleTemporal pedidoActulizado = new DetalleTemporal(plato,totalCantidad);
-                OrdenTemporal.actualizarItemOrden(pedidoActulizado,indicePlatoSiExiste);
+                 orden.actualizarItemOrden(pedidoActulizado,indicePlatoSiExiste);
+                //OrdenTemporal.actualizarItemOrden(pedidoActulizado,indicePlatoSiExiste);
             }else{
                 DetalleTemporal nuevaOrden = new DetalleTemporal(plato,cantidad);
-                OrdenTemporal.agregaItemOrden(nuevaOrden);
+                orden.agregaItemOrden(nuevaOrden);
+                //OrdenTemporal.agregaItemOrden(nuevaOrden);
 
             }
         }
