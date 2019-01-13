@@ -10,6 +10,20 @@ public class OrdenTemporal {
 
     private static ArrayList<DetalleTemporal> orden = new ArrayList<>();
 
+    public OrdenTemporal() {
+    }
+
+    public static ArrayList<DetalleTemporal> getInstance() {
+
+        if (orden == null){
+
+            orden = new ArrayList<DetalleTemporal>();
+        }
+
+        return orden;
+    }
+
+
     public static void agregaItemOrden(DetalleTemporal detalleTemporal){
         orden.add(detalleTemporal);
     }
