@@ -91,7 +91,9 @@ public class DetalleAdapter extends RecyclerView.Adapter<DetalleAdapter.DetalleP
                 @Override
                 public void onClick(View view) {
 
-                    OrdenTemporal.eliminarorden(detalleTemporal);
+                    OrdenTemporal orden = OrdenTemporal.getInstance();
+                    orden.eliminarorden(detalleTemporal);
+                    //OrdenTemporal.eliminarorden(detalleTemporal);
 
 
                 }
