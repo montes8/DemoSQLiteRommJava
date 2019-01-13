@@ -55,6 +55,7 @@ public class DetalleAdapter extends RecyclerView.Adapter<DetalleAdapter.DetalleP
 
         holder.setOnClickListenerEliminarorden(detallesaPedido);
 
+
     }
 
     @Override

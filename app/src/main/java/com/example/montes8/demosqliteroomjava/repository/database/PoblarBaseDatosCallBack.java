@@ -24,17 +24,27 @@ public class PoblarBaseDatosCallBack extends RoomDatabase.Callback{
         super.onCreate(db);
 
         final ArrayList<Plato> listaPlatos = new ArrayList<>();
-        listaPlatos.add(new Plato("Lomo Saltado","lomo",15.50,"1000",10,context.getString(R.string.lomo)));
-        listaPlatos.add(new Plato("Arroz Con Pollo","arroz",10.50,"2000",20,context.getString(R.string.lomo)));
-        listaPlatos.add(new Plato("Ceviche","ceviche",12.50,"500",10,context.getString(R.string.lomo)));
-        listaPlatos.add(new Plato("Rocoto Relleno","rocoto",15.50,"800",20,context.getString(R.string.lomo)));
-        listaPlatos.add(new Plato("Aji de Gallina","aji",14.50,"300",10,context.getString(R.string.lomo)));
-        listaPlatos.add(new Plato("Papa a la Huancaina","huancaina",16.50,"1200",20,context.getString(R.string.lomo)));
-        listaPlatos.add(new Plato("Cuy","cuy",15.50,"2500",10,context.getString(R.string.lomo)));
-        listaPlatos.add(new Plato("Arroz Chaufa","chaufa",155.50,"1000",10,context.getString(R.string.lomo)));
-        listaPlatos.add(new Plato("Cau Cau","caucau",15.00,"1100",20,context.getString(R.string.lomo)));
-        listaPlatos.add(new Plato("Causa","causa",11.50,"1500",10,context.getString(R.string.lomo)));
-        listaPlatos.add(new Plato("Escabeche","escabeche",12.50,"1080",10,context.getString(R.string.lomo)));
+        listaPlatos.add(new Plato("Escabeche","escabeche",12.50,"1080",10,context.getString(R.string.escabeche)));
+
+        listaPlatos.add(new Plato("Arroz con pollo","arroz",12.50,"1080",10,context.getString(R.string.arrozpollo)));
+
+        listaPlatos.add(new Plato("Aji","aji",12.50,"1080",10,context.getString(R.string.aji)));
+
+        listaPlatos.add(new Plato("Caucau","caucau",12.50,"1080",10,context.getString(R.string.caucau)));
+
+        listaPlatos.add(new Plato("Ceviche","ceviche",12.50,"1080",10,context.getString(R.string.ceviche)));
+
+        listaPlatos.add(new Plato("Chaufa","chaufa",12.50,"1080",10,context.getString(R.string.chaufa)));
+
+        listaPlatos.add(new Plato("Cuy","cuy",12.50,"1080",10,context.getString(R.string.cuy)));
+
+        listaPlatos.add(new Plato("Huancaina","huancaina",12.50,"1080",10,context.getString(R.string.papahuancaina)));
+
+        listaPlatos.add(new Plato("Lomo","lomo",12.50,"1080",10,context.getString(R.string.lomo)));
+
+        listaPlatos.add(new Plato("Rocoto","rocoto",12.50,"1080",10,context.getString(R.string.rocoto)));
+
+
 
 
         Thread poblarCallback = new Thread(new Runnable() {
@@ -44,9 +54,6 @@ public class PoblarBaseDatosCallBack extends RoomDatabase.Callback{
 
             }
         });
-
-
-
 
         poblarCallback.start();
 

@@ -40,8 +40,6 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
         this.listaPlatos = listaPlatos;
         notifyDataSetChanged();
     }
-
-
     @NonNull
     @Override
     public PlatoViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -63,9 +61,7 @@ public class ListaPlatosAdapter extends RecyclerView.Adapter<ListaPlatosAdapter.
         holder.setOnClickListener(plato);
 
         holder.setOnClickAgregarOrden(plato);
-
-
-    }
+        }
 
     @Override
     public int getItemCount() {

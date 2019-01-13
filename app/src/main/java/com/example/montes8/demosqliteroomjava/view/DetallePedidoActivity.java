@@ -51,13 +51,6 @@ public class DetallePedidoActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-
-    }
-
     private void ajustarToolbardetallepedido(){
 
         setSupportActionBar(toolbarpedido);

@@ -7,8 +7,8 @@ import android.arch.persistence.room.PrimaryKey;
 import io.reactivex.annotations.NonNull;
 
 @Entity(foreignKeys = {@ForeignKey(entity = Pedido.class,parentColumns = "idPedido",childColumns = "pedidoid"),
-                                                             @ForeignKey(entity = Plato.class,parentColumns = "idPlato",childColumns = "platoId")
-                                                           })
+                        @ForeignKey(entity = Plato.class,parentColumns = "idPlato",childColumns = "platoId")})
+
 public class DetallePedido {
 
     @PrimaryKey(autoGenerate = true)

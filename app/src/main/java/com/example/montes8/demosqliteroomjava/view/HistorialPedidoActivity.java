@@ -46,10 +46,10 @@ public class HistorialPedidoActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                final ArrayList<DetallePedido> lista = (ArrayList<DetallePedido>) DemoApplication.dataBase.detallePedidoDao().listarDetallePedidoId(datosPedido.getIdPedido());
+         final ArrayList<DetallePedido> lista = (ArrayList<DetallePedido>) DemoApplication.dataBase.detallePedidoDao()
+                                                 .listarDetallePedidoId(datosPedido.getIdPedido());
 
-
-                runOnUiThread(new Runnable() {
+         runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         historialAdapter.addList(lista);
